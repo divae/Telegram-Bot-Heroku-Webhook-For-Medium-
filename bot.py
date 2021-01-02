@@ -4,9 +4,7 @@ from flask import Flask, request
 
 BOT_URL = f'https://api.telegram.org/bot{os.environ["BOT_KEY"]}/'  # <-- add your telegram token as environment variable
 
-
 app = Flask(__name__)
-
 
 @app.route('/', methods=['POST'])
 def main():  
@@ -14,6 +12,7 @@ def main():
 
     print(data)  # Comment to hide what Telegram is sending you
     chat_id = data['message']['chat']['id']
+
     message = data['message']['text']
 
     json_data = {
@@ -29,3 +28,4 @@ def main():
 
 if __name__ == '__main__':  
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
+
